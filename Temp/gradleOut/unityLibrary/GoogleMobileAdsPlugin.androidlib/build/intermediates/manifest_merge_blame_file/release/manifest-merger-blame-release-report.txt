@@ -1,0 +1,36 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.google.unity.ads"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="1"
+8-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml
+10
+11    <application>
+11-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:3:3-7:17
+12        <uses-library
+12-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:4:5-84
+13            android:name="org.apache.http.legacy"
+13-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:4:44-81
+14            android:required="false" />
+14-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:4:19-43
+15
+16        <meta-data
+16-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:5:5-130
+17            android:name="com.google.android.gms.ads.APPLICATION_ID"
+17-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:5:16-72
+18            android:value="ca-app-pub-3940256099942544~5224354917" />
+18-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:5:73-127
+19        <meta-data
+19-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:6:5-96
+20            android:name="com.google.unity.ads.UNITY_VERSION"
+20-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:6:16-65
+21            android:value="2020.3.18f1" />
+21-->/Users/hyunseo/Desktop/src/unity_game/rock_paper_scissors/Temp/gradleOut/unityLibrary/GoogleMobileAdsPlugin.androidlib/AndroidManifest.xml:6:66-93
+22    </application>
+23
+24</manifest>

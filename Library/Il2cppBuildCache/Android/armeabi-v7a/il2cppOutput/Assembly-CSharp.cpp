@@ -4078,10 +4078,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void main_setComImage_m5D3212A474FCDD8E66ABC9
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void main_setUserImage_mCEA12FA1AF62FBCDE5CB5940F2A74B4246DF8BB1 (main_t0B774DADB5B3131AED9A5836A985C1FCFC519EBA * __this, int32_t ___choice0, const RuntimeMethod* method);
 // System.Int32 System.Int32::Parse(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Int32_Parse_mE5D220FEA7F0BFB1B220B2A30797D7DD83ACF22C (String_t* ___s0, const RuntimeMethod* method);
-// System.Void main::saveScore(System.Int32,System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void main_saveScore_mAA8B57D1FAD79EF174319A1596046E791C801FA4 (main_t0B774DADB5B3131AED9A5836A985C1FCFC519EBA * __this, int32_t ___currentScore0, int32_t ___bestScore1, const RuntimeMethod* method);
 // System.Void main::activeBtn()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void main_activeBtn_m256FDB58A4F1C3139154C27634657E56602A1342 (main_t0B774DADB5B3131AED9A5836A985C1FCFC519EBA * __this, const RuntimeMethod* method);
+// System.Void main::saveScore(System.Int32,System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void main_saveScore_mAA8B57D1FAD79EF174319A1596046E791C801FA4 (main_t0B774DADB5B3131AED9A5836A985C1FCFC519EBA * __this, int32_t ___currentScore0, int32_t ___bestScore1, const RuntimeMethod* method);
 // System.Void PlayerData::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PlayerData__ctor_mC2DA6B32832AB92B19E799148968590FF1F28C1B (PlayerData_t8CF0E5D9EE572FFF7E0B41DA391376CF0AB8EBB5 * __this, const RuntimeMethod* method);
 // System.String UnityEngine.JsonUtility::ToJson(System.Object)
@@ -4526,6 +4526,8 @@ IL_0036:
 
 IL_005b:
 	{
+		// activeBtn();
+		main_activeBtn_m256FDB58A4F1C3139154C27634657E56602A1342(__this, /*hidden argument*/NULL);
 		// saveScore(currentScore, int.Parse(bestScore.text));
 		int32_t L_15 = V_0;
 		Text_t6A2339DA6C05AE2646FC1A6C8FCC127391BE7FA1 * L_16 = __this->get_bestScore_19();
@@ -4535,8 +4537,6 @@ IL_005b:
 		int32_t L_18;
 		L_18 = Int32_Parse_mE5D220FEA7F0BFB1B220B2A30797D7DD83ACF22C(L_17, /*hidden argument*/NULL);
 		main_saveScore_mAA8B57D1FAD79EF174319A1596046E791C801FA4(__this, L_15, L_18, /*hidden argument*/NULL);
-		// activeBtn();
-		main_activeBtn_m256FDB58A4F1C3139154C27634657E56602A1342(__this, /*hidden argument*/NULL);
 		// }
 		return;
 	}
@@ -5043,7 +5043,7 @@ IL_001a:
 		AdRequest_t32DDA912B1EEA224F107BDD96FD925AA97A6E9FE * L_2 = (AdRequest_t32DDA912B1EEA224F107BDD96FD925AA97A6E9FE *)il2cpp_codegen_object_new(AdRequest_t32DDA912B1EEA224F107BDD96FD925AA97A6E9FE_il2cpp_TypeInfo_var);
 		AdRequest__ctor_mFA778383D6EE57A62A19BE2F446F898CB178B7E8(L_2, /*hidden argument*/NULL);
 		V_0 = L_2;
-		// RewardedAd.Load(rewardTestADID, adRequest,
+		// RewardedAd.Load(rewardADID, adRequest,
 		//     (RewardedAd ad, LoadAdError error) => {
 		//         // if error is not null, the load request failed.
 		//         if (error != null || ad == null)
@@ -5058,7 +5058,7 @@ IL_001a:
 		// 
 		//         rewardedAD = ad;
 		//     });
-		String_t* L_3 = __this->get_rewardTestADID_28();
+		String_t* L_3 = __this->get_rewardADID_27();
 		AdRequest_t32DDA912B1EEA224F107BDD96FD925AA97A6E9FE * L_4 = V_0;
 		Action_2_t7C87901D0FAA593DD7C7AFD84D329336BD62B102 * L_5 = (Action_2_t7C87901D0FAA593DD7C7AFD84D329336BD62B102 *)il2cpp_codegen_object_new(Action_2_t7C87901D0FAA593DD7C7AFD84D329336BD62B102_il2cpp_TypeInfo_var);
 		Action_2__ctor_m7B8CBEC8303C3D55793CF9A4714EE01D61B7BB26(L_5, __this, (intptr_t)((intptr_t)main_U3CLoadRewardedAdU3Eb__47_0_m1A7328DD5224937AAFB8958170DCDDF86A94A3E8_RuntimeMethod_var), /*hidden argument*/Action_2__ctor_m7B8CBEC8303C3D55793CF9A4714EE01D61B7BB26_RuntimeMethod_var);

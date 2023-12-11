@@ -134,8 +134,8 @@ public class main : MonoBehaviour
         if (currentScore > int.Parse(currentBestScore.text)) {
             currentBestScore.text = currentScore.ToString();
         }
-        saveScore(currentScore, int.Parse(bestScore.text));
         activeBtn();
+        saveScore(currentScore, int.Parse(bestScore.text));
     }
 
     public void saveScore(int currentScore,int bestScore) {
@@ -267,7 +267,11 @@ public class main : MonoBehaviour
     }
 
     public void onClickCoverExitButton() {
-        Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     public void onClickRetryBtn() {
@@ -294,7 +298,7 @@ public class main : MonoBehaviour
         var adRequest = new AdRequest();
 
         // send the request to load the ad.
-        RewardedAd.Load(rewardTestADID, adRequest,
+        RewardedAd.Load(rewardADID, adRequest,
             (RewardedAd ad, LoadAdError error) => {
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)

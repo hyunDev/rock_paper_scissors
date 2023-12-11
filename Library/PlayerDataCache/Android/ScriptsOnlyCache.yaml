@@ -14,6 +14,8 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
+    - UnityEditor.Tilemaps.GridPaletteBrushes
+    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
@@ -91,7 +93,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3882}
     - Class: 114
-      Script: {instanceID: 17564}
+      Script: {instanceID: 17560}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128

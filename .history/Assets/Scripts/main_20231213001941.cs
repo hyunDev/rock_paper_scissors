@@ -9,10 +9,6 @@ using GoogleMobileAds.Api;
 
 public class main : MonoBehaviour
 {
-    // 선택한 가위바위보 결과 이미지
-    // public Image objUser;
-    // public Image objCom;
-
     // 첫화면
     public GameObject CoverImage;
     // 첫화면 타이틀
@@ -20,23 +16,26 @@ public class main : MonoBehaviour
     // 타이틀 깜박임 애니메이션을 위한 시간
     float titleAnimTime;
     // 현재 가지고 있는 돈
+    public GameObject startBtn;
     public Text totMoney;
     // 판돈
     public Text plusMoney;
+    // 판돈 input field
     public InputField plusInputMoney;
-    // 게임 결과
+    // 게임 결과 메세지 1 (승리 유무)
     public Text resMsg;
-    // 얻은 돈
+    // 게임 결과 메세지 2 (얻은 돈)
     public Text resMsg2;
 
-    // game 결과 popup
+    // game 결과 popup 창
     public GameObject gameResPopup;
     
-
+    // 가위,바위,보 선택 버튼
     public Button scissorBtn;
     public Button rockBtn;
     public Button paperBtn;
 
+    // 선택한 가위바위보 결과 이미지
     public Image objComImage;
     public Image objUserImage;
 
@@ -44,7 +43,6 @@ public class main : MonoBehaviour
     public Text bestScore;
     // 이번 게임의 최고점수
     public Text currentBestScore;
-    private bool isStart = false;
 
     // end Popup Start
     // end popup
@@ -54,6 +52,10 @@ public class main : MonoBehaviour
     // exit 버튼
     public Button endPopupExitBtn;
 
+    // sound
+    public AudioSource buttonClickSound;
+    public AudioClip btnClickSound;
+
     //보상형 광고 관리 변수
     public RewardedAd rewardedAD; 
 
@@ -62,14 +64,22 @@ public class main : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        // 광고 로드
         LoadRewardedAd();
 
+        // 팝업 창 없애기
         gameResPopup.SetActive(false);
         endPopup.SetActive(false);
+        
+        // 데이터 불러오기
         PlayerData playerData = loadData();
+        
+        // 화면에 불러온 데이터 표시
         bestScore.text = playerData.bestScore.ToString();
         currentBestScore.text = playerData.currentBestScore.ToString();
+        
         int currentScore = playerData.currentScore;
+        
         if (currentScore != 0) {
             totMoney.text = currentScore.ToString();
         } else {
@@ -79,13 +89,12 @@ public class main : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        /* if (isStart == true && gameResPopup.activeSelf == true) {
-            Invoke("endGame", 2f);
-        } */
+        // 돈이 0이 되면 게임 종료
         if (totMoney.text == "0") {
             endPopup.SetActive(true);
         }
 
+        // 첫 화면 타이틀 깜박임 애니메이션 효과
         if (titleAnimTime < 0.5f) {
             GameTitle.color = new Color(1,1,1,1 - titleAnimTime);
         } else {
@@ -99,6 +108,7 @@ public class main : MonoBehaviour
 
     // 게임 상태 초기화
     public void gameInit() {
+        LoadRewardedAd();
         gameResPopup.SetActive(false);
         endPopup.SetActive(false);
         // 게임이 중간에 종료 되어서 진행 중인 상태가 있을 경우
@@ -115,8 +125,8 @@ public class main : MonoBehaviour
         gameResPopup.SetActive(true);
     }
 
+    // 매 게임 종료시 수행할 내용, 데이터 저장
     public void endGame() {
-        isStart = false;
         int currentScore = int.Parse(totMoney.text);
         if (currentScore > int.Parse(bestScore.text)) {
             bestScore.text = currentScore.ToString();
@@ -124,8 +134,8 @@ public class main : MonoBehaviour
         if (currentScore > int.Parse(currentBestScore.text)) {
             currentBestScore.text = currentScore.ToString();
         }
-        saveScore(currentScore, int.Parse(bestScore.text));
         activeBtn();
+        saveScore(currentScore, int.Parse(bestScore.text));
     }
 
     public void saveScore(int currentScore,int bestScore) {
@@ -148,13 +158,12 @@ public class main : MonoBehaviour
     }
 
     // 승패 처리
-    public void startGame(int choice) {
-        isStart = true;        
+    public void startGame(int choice) {       
+        // 가위바위보 버튼 비활성화
         inActiveBtn();
         // choice 1,2,3 가위 바위 보
         // 컴퓨터 결과
         int com = Random.Range(1,4); // 1~3 난수
-        
         
         // user, com 선택 결과 이미지 표시
         objUserImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image_" + choice) as Sprite;
@@ -214,7 +223,7 @@ public class main : MonoBehaviour
 
     // 판돈이 0원이 아닌지 체크
     public void checkStakeMoney() {
-        if (string.IsNullOrWhiteSpace(plusInputMoney.text)) {
+        if (string.IsNullOrWhiteSpace(plusInputMoney.text) || int.Parse(plusInputMoney.text) > int.Parse(totMoney.text)) {
             plusInputMoney.text = "1";
         }
     }
@@ -258,7 +267,11 @@ public class main : MonoBehaviour
     }
 
     public void onClickCoverExitButton() {
-        Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     public void onClickRetryBtn() {
@@ -285,7 +298,7 @@ public class main : MonoBehaviour
         var adRequest = new AdRequest();
 
         // send the request to load the ad.
-        RewardedAd.Load(rewardTestADID, adRequest,
+        RewardedAd.Load(rewardADID, adRequest,
             (RewardedAd ad, LoadAdError error) => {
                 // if error is not null, the load request failed.
                 if (error != null || ad == null)
@@ -314,6 +327,12 @@ public class main : MonoBehaviour
                 gameInit();
             });
         }
+    }
+
+    public void playBtnClickSound() {
+        // AudioSource audioSource = startBtn.AddComponent<AudioSource>();
+        // audioSource.clip = btnClickSound;
+        // audioSource.Play();
     }
 }
 
